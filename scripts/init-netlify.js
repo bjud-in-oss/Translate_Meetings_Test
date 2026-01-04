@@ -26,12 +26,16 @@ const netlifyTomlContent = `
 
 [build.environment]
   SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_OMIT_KEYS = "VITE_API_KEY,API_KEY"
   NODE_VERSION = "20"
+
+[context.production.environment]
+  SECRETS_SCAN_ENABLED = "false"
 `;
 
 try {
   fs.writeFileSync('netlify.toml', netlifyTomlContent.trim());
-  console.log('✅ netlify.toml created (Secrets scanning disabled).');
+  console.log('✅ netlify.toml created (Secrets scanning disabled + Omit Keys).');
 } catch (err) {
   console.error('❌ Failed to create netlify.toml:', err);
   process.exit(1);
