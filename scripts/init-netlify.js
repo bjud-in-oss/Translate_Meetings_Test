@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import path from 'path';
 
@@ -8,12 +7,14 @@ const redirectsContent = '/* /index.html 200';
 // Content for netlify.toml
 // CRITICAL: SECRETS_SCAN_ENABLED = "false" is required because we are using
 // the API key client-side in this specific architecture.
+// NODE_VERSION = "20" ensures the build environment matches our requirements.
 const netlifyTomlContent = `[build]
   publish = "dist"
   command = "npm run build"
 
 [build.environment]
   SECRETS_SCAN_ENABLED = "false"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
