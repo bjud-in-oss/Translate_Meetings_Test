@@ -1,8 +1,11 @@
 {
   "name": "meeting-translator",
   "private": true,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "node scripts/init-netlify.js && tsc && vite build",
