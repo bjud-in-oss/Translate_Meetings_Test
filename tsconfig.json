@@ -18,6 +18,6 @@
     "types": ["vite/client"]
   },
   "include": ["."],
-  "exclude": ["vite.config.ts", "node_modules"],
+  "exclude": ["vite.config.ts", "node_modules", "specs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
