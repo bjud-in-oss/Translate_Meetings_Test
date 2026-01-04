@@ -19,8 +19,3 @@ declare namespace NodeJS {
     env: ProcessEnv;
   }
 }
-
-// Declare process globally using the NodeJS.Process type
-// This declaration matches @types/node's declaration, preventing "redeclaration" errors
-// while ensuring 'process' exists when types are missing.
-declare var process: NodeJS.Process;
