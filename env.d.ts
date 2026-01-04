@@ -9,7 +9,7 @@ interface ImportMeta {
 }
 
 // Global constant injected by Vite define
-declare const __SECURE_API_KEY__: string;
+declare const __APP_API_KEY__: string;
 
 declare namespace NodeJS {
   interface ProcessEnv {

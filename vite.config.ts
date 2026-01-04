@@ -17,11 +17,10 @@ export default defineConfig(({ mode }) => {
     define: {
       // 1. Inject the encoded key safely.
       // We use a JSON.stringify'd string so it replaces to "..." in the code.
-      '__SECURE_API_KEY__': JSON.stringify(encodedKey),
+      // Renamed to __APP_API_KEY__ to resolve ReferenceError mismatches.
+      '__APP_API_KEY__': JSON.stringify(encodedKey),
       
       // 2. Polyfill process.env for libraries
-      // Note: This replaces `process.env` with `{}`. 
-      // It does NOT define `process`. We handle `process` in index.tsx if needed.
       'process.env': {},
     }
   }

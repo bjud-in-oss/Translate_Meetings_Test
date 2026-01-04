@@ -14,8 +14,8 @@ export class GeminiLiveService {
     let encodedKey = '';
     
     // SAFE ACCESS: Check if defined to prevent ReferenceError
-    if (typeof __SECURE_API_KEY__ !== 'undefined') {
-        encodedKey = __SECURE_API_KEY__;
+    if (typeof __APP_API_KEY__ !== 'undefined') {
+        encodedKey = __APP_API_KEY__;
     }
 
     let apiKey = '';

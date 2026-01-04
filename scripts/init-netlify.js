@@ -1,3 +1,4 @@
+
 import fs from 'fs';
 import path from 'path';
 
@@ -17,8 +18,9 @@ try {
   process.exit(1);
 }
 
-// 2. Content for netlify.toml to disable secrets scanning
-// We generate this dynamically because AI Studio environment might block the file statically.
+// 2. Content for netlify.toml to disable secrets scanning AND set publish directory
+// Note: This script runs during 'npm run build'.
+// CRITICAL: You must commit the generated 'netlify.toml' to your repo for Netlify to see the [build] config before the build starts.
 const netlifyTomlContent = `
 [build]
   command = "npm run build"
@@ -34,7 +36,8 @@ const netlifyTomlContent = `
 
 try {
   fs.writeFileSync('netlify.toml', netlifyTomlContent.trim());
-  console.log('✅ netlify.toml created (Configured to disable secrets scanning).');
+  console.log('✅ netlify.toml created (Configured to disable secrets scanning & set publish=dist).');
+  console.log('⚠️  IMPORTANT: Verify "netlify.toml" is present in your repo root before pushing to Netlify.');
 } catch (err) {
   console.error('❌ Failed to create netlify.toml:', err);
   process.exit(1);
