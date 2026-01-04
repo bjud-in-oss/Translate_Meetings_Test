@@ -11,7 +11,28 @@ export class GeminiLiveService {
   
   constructor() {
     // Runtime decoding of the obfuscated key
-    const apiKey = process.env.API_KEY ? atob(process.env.API_KEY) : '';
+    let encodedKey = '';
+    
+    // SAFE ACCESS: Check if defined to prevent ReferenceError
+    if (typeof __SECURE_API_KEY__ !== 'undefined') {
+        encodedKey = __SECURE_API_KEY__;
+    }
+
+    let apiKey = '';
+    try {
+        const cleanKey = encodedKey.replace(/\s/g, '');
+        if (cleanKey) {
+            apiKey = atob(cleanKey);
+        }
+    } catch (e) {
+        console.error("Failed to decode API Key.", e);
+    }
+    
+    // Fallback log to help debug if key is missing
+    if (!apiKey) {
+        console.warn("GeminiLiveService: API Key is missing or invalid. Check your .env file or build configuration.");
+    }
+
     this.ai = new GoogleGenAI({ apiKey });
   }
 

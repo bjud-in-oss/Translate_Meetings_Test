@@ -91,7 +91,22 @@ export class UITranslationService {
 
   constructor() {
     // Runtime decoding of the obfuscated key
-    const apiKey = process.env.API_KEY ? atob(process.env.API_KEY) : '';
+    let encodedKey = '';
+    
+    // SAFE ACCESS
+    if (typeof __SECURE_API_KEY__ !== 'undefined') {
+        encodedKey = __SECURE_API_KEY__;
+    }
+
+    let apiKey = '';
+    try {
+        const cleanKey = encodedKey.replace(/\s/g, '');
+        if (cleanKey) {
+            apiKey = atob(cleanKey);
+        }
+    } catch (e) {
+        console.error("UI Translation Service: API Key decode failed", e);
+    }
     this.ai = new GoogleGenAI({ apiKey });
   }
 
