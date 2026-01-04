@@ -1,0 +1,7 @@
+{
+  "name": "Meeting translator 4 jan tidigare 12 dec buggfixad",
+  "description": "Semi-duplex real-time translator between Swedish and selectable languages using Gemini Live API.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
