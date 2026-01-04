@@ -46,7 +46,9 @@ export class PolishedService {
   private readonly COOLDOWN_MS = 2000;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Runtime decoding of the obfuscated key
+    const apiKey = process.env.API_KEY ? atob(process.env.API_KEY) : '';
+    this.ai = new GoogleGenAI({ apiKey });
   }
 
   async start(
